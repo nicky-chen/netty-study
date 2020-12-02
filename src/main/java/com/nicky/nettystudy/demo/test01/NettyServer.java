@@ -1,6 +1,7 @@
 package com.nicky.nettystudy.demo.test01;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -13,11 +14,15 @@ public class NettyServer {
     private static final int BEGIN_PORT = 8000;
 
     public static void main(String[] args) {
+        // 指定线程模型
         NioEventLoopGroup boosGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
+
         final AttributeKey<Object> clientKey = AttributeKey.newInstance("clientKey");
+
+        // 指定io模型 和 连接读写处理逻辑
         serverBootstrap.group(boosGroup, workerGroup).channel(NioServerSocketChannel.class)
             .attr(AttributeKey.newInstance("serverName"), "nettyServer").childAttr(clientKey, "clientValue")
             .option(ChannelOption.SO_BACKLOG, 1024).childOption(ChannelOption.SO_KEEPALIVE, true)
@@ -30,6 +35,7 @@ public class NettyServer {
 
         bind(serverBootstrap, BEGIN_PORT);
     }
+
 
     private static void bind(final ServerBootstrap serverBootstrap, final int port) {
         serverBootstrap.bind(port).addListener(future -> {
