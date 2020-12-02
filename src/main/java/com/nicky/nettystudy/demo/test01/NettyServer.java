@@ -32,7 +32,7 @@ public class NettyServer {
                 System.out.println(ch.attr(clientKey).get());
             }
         });
-
+        // 绑定端口
         bind(serverBootstrap, BEGIN_PORT);
     }
 
