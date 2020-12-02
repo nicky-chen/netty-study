@@ -11,6 +11,10 @@ import io.netty.buffer.ByteBufAllocator;
 
 import static com.nicky.nettystudy.demo.test05.command.Command.LOGIN_REQUEST;
 
+/**
+ * 通信协议的设计
+ * @see 通讯协议.png
+ */
 public class PacketCodeC {
 
     private static final int MAGIC_NUMBER = 0x12345678;
@@ -34,6 +38,7 @@ public class PacketCodeC {
         byte[] bytes = Serializer.DEFAULT.serialize(packet);
 
         // 3. 实际编码过程
+        // 魔数 + 版本号 + 序列化算法 + 指令 + 数据长度 + 数据
         byteBuf.writeInt(MAGIC_NUMBER);
         byteBuf.writeByte(packet.getVersion());
         byteBuf.writeByte(Serializer.DEFAULT.getSerializerAlogrithm());

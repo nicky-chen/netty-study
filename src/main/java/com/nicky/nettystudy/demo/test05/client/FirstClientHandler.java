@@ -25,7 +25,7 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     private ByteBuf getByteBuf(ChannelHandlerContext ctx) {
-        byte[] bytes = "你好，闪电侠!".getBytes(Charset.forName("utf-8"));
+        byte[] bytes = "你好，nicky!".getBytes(Charset.forName("utf-8"));
 
         ByteBuf buffer = ctx.alloc().buffer();
 
