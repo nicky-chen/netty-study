@@ -1,9 +1,3 @@
-/*
- * File Name:NettyServer is created on 2020/12/2上午10:56 by nicky_chen
- *
- * Copyright (c) 2020, xiaoyujiaoyu technology All Rights Reserved.
- *
- */
 package com.nicky.nettystudy.demo;
 
 import io.netty.bootstrap.ServerBootstrap;

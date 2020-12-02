@@ -1,9 +1,3 @@
-/*
- * File Name:NettyClient is created on 2020/12/2上午11:03 by nicky_chen
- *
- * Copyright (c) 2020, xiaoyujiaoyu technology All Rights Reserved.
- *
- */
 package com.nicky.nettystudy.demo;
 
 import java.util.Date;
