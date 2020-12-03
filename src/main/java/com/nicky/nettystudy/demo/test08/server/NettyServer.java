@@ -5,6 +5,7 @@ import java.util.Date;
 import com.nicky.nettystudy.demo.test08.codec.PacketDecoder;
 import com.nicky.nettystudy.demo.test08.codec.PacketEncoder;
 import com.nicky.nettystudy.demo.test08.codec.Spliter;
+import com.nicky.nettystudy.demo.test08.server.handler.LifeCyCleTestHandler;
 import com.nicky.nettystudy.demo.test08.server.handler.LoginRequestHandler;
 import com.nicky.nettystudy.demo.test08.server.handler.MessageRequestHandler;
 
@@ -34,6 +35,7 @@ public class NettyServer {
                     protected void initChannel(NioSocketChannel ch) {
 //                        ch.pipeline().addLast(new FirstServerHandler());
                         ch.pipeline().addLast(new Spliter());
+                        ch.pipeline().addLast(new LifeCyCleTestHandler());
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginRequestHandler());
                         ch.pipeline().addLast(new MessageRequestHandler());
