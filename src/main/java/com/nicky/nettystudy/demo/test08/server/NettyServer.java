@@ -1,13 +1,12 @@
-package com.nicky.nettystudy.demo.test07.server;
+package com.nicky.nettystudy.demo.test08.server;
 
 import java.util.Date;
 
-import com.nicky.nettystudy.demo.test07.server.handler.inbound.InBoundHandlerA;
-import com.nicky.nettystudy.demo.test07.server.handler.inbound.InBoundHandlerB;
-import com.nicky.nettystudy.demo.test07.server.handler.inbound.InBoundHandlerC;
-import com.nicky.nettystudy.demo.test07.server.handler.outbound.OutBoundHandlerA;
-import com.nicky.nettystudy.demo.test07.server.handler.outbound.OutBoundHandlerB;
-import com.nicky.nettystudy.demo.test07.server.handler.outbound.OutBoundHandlerC;
+import com.nicky.nettystudy.demo.test08.codec.PacketDecoder;
+import com.nicky.nettystudy.demo.test08.codec.PacketEncoder;
+import com.nicky.nettystudy.demo.test08.codec.Spliter;
+import com.nicky.nettystudy.demo.test08.server.handler.LoginRequestHandler;
+import com.nicky.nettystudy.demo.test08.server.handler.MessageRequestHandler;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -32,19 +31,13 @@ public class NettyServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
-                    @Override
                     protected void initChannel(NioSocketChannel ch) {
-                        // inBound，处理读数据的逻辑链
-                        ch.pipeline().addLast(new InBoundHandlerA());
-                        ch.pipeline().addLast(new InBoundHandlerB());
-                        ch.pipeline().addLast(new InBoundHandlerC());
-                        ch.pipeline().addLast(new ServerHandler());
-
-
-                        // outBound，处理写数据的逻辑链
-                        ch.pipeline().addLast(new OutBoundHandlerA());
-                        ch.pipeline().addLast(new OutBoundHandlerB());
-                        ch.pipeline().addLast(new OutBoundHandlerC());
+//                        ch.pipeline().addLast(new FirstServerHandler());
+                        ch.pipeline().addLast(new Spliter());
+                        ch.pipeline().addLast(new PacketDecoder());
+                        ch.pipeline().addLast(new LoginRequestHandler());
+                        ch.pipeline().addLast(new MessageRequestHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
 
