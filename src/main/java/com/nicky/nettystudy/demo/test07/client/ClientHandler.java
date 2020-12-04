@@ -15,8 +15,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
- * @author chao.yu
- * chao.yu@dianping.com
+ * @author nicky-chin
+ * nicky-chin
  * @date 2018/08/04 06:23.
  */
 public class ClientHandler extends ChannelInboundHandlerAdapter {

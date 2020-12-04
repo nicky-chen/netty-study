@@ -7,8 +7,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
- * @author chao.yu
- * chao.yu@dianping.com
+ * @author nicky-chin
+ * nicky-chin
  * @date 2018/08/04 06:23.
  */
 public class FirstClientHandler extends ChannelInboundHandlerAdapter {
@@ -21,7 +21,7 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     private ByteBuf getByteBuf(ChannelHandlerContext ctx) {
-        byte[] bytes = "你好，欢迎关注我的微信公众号，《闪电侠的博客》!".getBytes(Charset.forName("utf-8"));
+        byte[] bytes = "你好，欢迎关注我的微信公众号，《nicky-chin的博客》!".getBytes(Charset.forName("utf-8"));
         ByteBuf buffer = ctx.alloc().buffer();
         buffer.writeBytes(bytes);
 

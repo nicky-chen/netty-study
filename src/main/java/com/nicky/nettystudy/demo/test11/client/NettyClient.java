@@ -31,7 +31,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
- * @author 闪电侠
+ * @author nicky-chin
  */
 public class NettyClient {
     private static final int MAX_RETRY = 5;
